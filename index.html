@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>City Clinic - Dr Omar Faruqi</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fdf8f2;
+      color: #3e2f23;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: sticky;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 50px;
+      background: rgba(255, 250, 243, 0.7);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+      z-index: 100;
+      position: relative;
+    }
+
+    /* LOGO LEFT */
+    .logo {
+      height: 60px;
+    }
+
+    /* CENTER TITLE */
+    .clinic-name {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Playfair Display';
+      font-size: 26px;
+      font-weight: bold;
+      color: #5a4332;
+    }
+
+    /* LINKS RIGHT */
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #5a4332;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #a67c52;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 130px 20px;
+      background: linear-gradient(to right, #fffaf3, #fdf6ec);
+    }
+
+    .doctor-name {
+      font-family: 'Playfair Display';
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: #5a4332;
+    }
+
+    .doctor-img {
+      width: 10cm;
+      height: 10cm;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid #d4b08c;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      transition: 0.4s;
+    }
+
+    .doctor-img:hover {
+      transform: scale(1.05);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display';
+      font-size: 54px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #6b5443;
+    }
+
+    .btn {
+      padding: 15px 35px;
+      background: linear-gradient(45deg, #c69c6d, #a67c52);
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 25px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    .section {
+      padding: 100px 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.8s ease;
+    }
+
+    .section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display';
+      font-size: 34px;
+      margin-bottom: 20px;
+    }
+
+    .about {
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.8;
+      color: #5a4332;
+    }
+
+    .divider {
+      width: 80px;
+      height: 3px;
+      background: #c69c6d;
+      border: none;
+      margin: 40px auto;
+    }
+
+    .card {
+      display: inline-block;
+      width: 240px;
+      padding: 25px;
+      margin: 15px;
+      border-radius: 20px;
+      background: #fffaf3;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .gallery img {
+      width: 280px;
+      margin: 10px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      transition: 0.4s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.08) rotate(1deg);
+    }
+
+    form {
+      max-width: 420px;
+      margin: auto;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #d8c3a5;
+      background: #fffaf3;
+    }
+
+    #successMsg {
+      display: none;
+      color: green;
+      margin-top: 10px;
+    }
+
+    footer {
+      background: #3e2f23;
+      color: #fffaf3;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      padding: 16px;
+      border-radius: 50%;
+      font-size: 22px;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .doctor-img {
+        width: 6cm;
+        height: 6cm;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+
+  <!-- LEFT LOGO -->
+  <img src="images/logo.png" class="logo">
+
+  <!-- CENTER TITLE -->
+  <div class="clinic-name">City Clinic</div>
+
+  <!-- RIGHT LINKS -->
+  <div>
+    <a href="#">Home</a>
+    <a href="#about">Doctor</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+</nav>
+
+<section class="hero">
+
+  <div class="doctor-name">Dr. Omar Faruqi</div>
+
+  <img src="images/doctor/doctor.jpeg" class="doctor-img">
+
+  <h1>Expert Pediatric Care</h1>
+  <p>Caring for your child with compassion & expertise</p>
+  <a href="#contact" class="btn">Book Appointment</a>
+
+</section>
+
+<section id="about" class="section">
+  <h2>About Doctor</h2>
+  <hr class="divider">
+  <div class="about">
+    <p><strong>Dr. Omar Faruqi</strong> Dr. Omar Faruqi is a highly dedicated and experienced pediatrician who is committed to providing exceptional healthcare for infants, children, and adolescents. With a strong background in clinical medicine and years of hands-on experience, he has developed expertise in diagnosing, treating, and managing a wide range of childhood illnesses. His approach focuses not only on curing diseases but also on preventive care, ensuring that every child grows in a healthy and safe environment. Known for his compassionate and patient-friendly nature, Dr. Omar takes the time to understand each child’s condition and explains treatments clearly to parents, building trust and confidence. His clinic is equipped with modern facilities, and he continuously updates his knowledge to provide the best and most advanced medical care possible. Parents appreciate his calm demeanor, attention to detail, and commitment to the overall well-being of every child he treats.</p>
+  </div>
+</section>
+
+<section id="services" class="section">
+  <h2>Our Services</h2>
+  <hr class="divider">
+  <div class="card">Child Checkup</div>
+  <div class="card">Vaccination</div>
+  <div class="card">Fever Treatment</div>
+  <div class="card">Growth Monitoring</div>
+</section>
+
+<section class="section">
+  <h2>Our Clinic</h2>
+  <hr class="divider">
+  <div class="gallery">
+    <img src="images/clinic/clinic1.jpeg">
+    <img src="images/clinic/clinic2.jpeg">
+    <img src="images/clinic/clinic4.jpeg">
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <h2>Book Appointment</h2>
+  <hr class="divider">
+
+  <form action="https://formspree.io/f/mjgpakep" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="tel" name="phone" placeholder="Phone Number" required>
+    <textarea name="message" placeholder="Your Message"></textarea>
+    <button class="btn">Book Appointment</button>
+  </form>
+
+  <p id="successMsg">✅ Appointment request sent successfully!</p>
+</section>
+
+<section class="section">
+  <h2>Our Location</h2>
+  <iframe 
+    src="https://www.google.com/maps?q=17.4045996,78.4546646&output=embed"
+    width="100%" height="300" style="border:0; border-radius:15px;">
+  </iframe>
+</section>
+
+<footer>
+  <p>📍 Masab Tank, Hyderabad</p>
+  <p>📞 +91 86862 50493</p>
+</footer>
+
+<a href="https://wa.me/918686250493?text=Hello%20Doctor%20I%20want%20to%20book%20an%20appointment" class="whatsapp">💬</a>
+
+<script>
+const form = document.querySelector("form");
+const msg = document.getElementById("successMsg");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  fetch(form.action, {
+    method: "POST",
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(response => {
+    if (response.ok) {
+      msg.style.display = "block";
+      form.reset();
+    }
+  });
+});
+
+const sections = document.querySelectorAll(".section");
+
+window.addEventListener("scroll", () => {
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) {
+      sec.classList.add("show");
+    }
+  });
+});
+</script>
+
+</body>
+</html>
