@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>City Clinic - Dr Omar Faruqi</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
   <style>
@@ -62,6 +62,53 @@
       color: #a67c52;
     }
 
+    /* HAMBURGER MENU */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: #5a4332;
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+
+    .nav-links {
+      display: flex;
+    }
+
+    .nav-links.mobile {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 250, 243, 0.95);
+      flex-direction: column;
+      padding: 20px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.mobile.active {
+      display: flex;
+    }
+
+    .hamburger.active div:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active div:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+
     .hero {
       text-align: center;
       padding: 130px 20px;
@@ -76,8 +123,8 @@
     }
 
     .doctor-img {
-      width: 10cm;
-      height: 10cm;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
       object-fit: cover;
       border: 6px solid #d4b08c;
@@ -161,10 +208,35 @@
       background: #fffaf3;
       box-shadow: 0 10px 25px rgba(0,0,0,0.05);
       transition: 0.3s;
+      text-align: center;
     }
 
     .card:hover {
       transform: translateY(-10px);
+    }
+
+    .service-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display';
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #5a4332;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #6b5443;
+      line-height: 1.5;
+    }
+
+    .services-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     .gallery {
@@ -174,11 +246,14 @@
     }
 
     .gallery img {
-      width: 280px;
+      width: calc(33.333% - 20px);
+      min-width: 200px;
       margin: 10px;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
       transition: 0.4s;
+      object-fit: cover;
+      height: 200px;
     }
 
     .gallery img:hover {
@@ -203,13 +278,213 @@
       display: none;
       color: green;
       margin-top: 10px;
+      padding: 10px;
+      background: #e8f5e8;
+      border-radius: 5px;
+      border: 1px solid #4caf50;
     }
 
     footer {
       background: #3e2f23;
       color: #fffaf3;
       text-align: center;
-      padding: 30px;
+      padding: 40px 20px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+      margin: 20px;
+    }
+
+    .footer-section h3 {
+      font-family: 'Playfair Display';
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #d4b08c;
+    }
+
+    .footer-section h4 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #d4b08c;
+    }
+
+    .footer-section p {
+      margin: 5px 0;
+      line-height: 1.6;
+    }
+
+    .footer-section a {
+      display: block;
+      color: #fffaf3;
+      text-decoration: none;
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: #d4b08c;
+    }
+
+    .footer-bottom {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #5a4332;
+    }
+
+    .testimonials {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .testimonial {
+      background: #fffaf3;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      max-width: 300px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-5px);
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 15px;
+      color: #5a4332;
+    }
+
+    .testimonial cite {
+      font-weight: bold;
+      color: #a67c52;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px 20px;
+      }
+
+      .clinic-name {
+        font-size: 20px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-links.mobile {
+        display: flex;
+      }
+
+      .hero {
+        padding: 80px 20px;
+      }
+
+      body {
+        font-size: 16px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .doctor-img {
+        width: 150px;
+        height: 150px;
+      }
+
+      .doctor-name {
+        font-size: 36px;
+      }
+
+      .section {
+        padding: 60px 20px;
+      }
+
+      .card {
+        width: calc(50% - 30px);
+        min-width: 150px;
+      }
+
+      .gallery img {
+        width: calc(50% - 20px);
+        min-width: 150px;
+        height: 150px;
+      }
+
+      .about {
+        text-align: left;
+      }
+
+      iframe {
+        height: 250px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      .gallery img {
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .doctor-name {
+        font-size: 32px;
+      }
+
+      .section h2 {
+        font-size: 28px;
+      }
+
+      .card p {
+        font-size: 16px;
+      }
+
+      .about {
+        font-size: 16px;
+      }
+
+      .footer-section h3 {
+        font-size: 20px;
+      }
+
+      .footer-section h4 {
+        font-size: 16px;
+      }
+
+      .footer-section p {
+        font-size: 14px;
+      }
     }
 
     .whatsapp {
@@ -222,17 +497,13 @@
       border-radius: 50%;
       font-size: 22px;
       text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: 0.3s;
+      z-index: 1000;
     }
 
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 34px;
-      }
-
-      .doctor-img {
-        width: 6cm;
-        height: 6cm;
-      }
+    .whatsapp:hover {
+      transform: scale(1.1);
     }
 
   </style>
@@ -250,7 +521,22 @@
   <div class="clinic-name">City Clinic</div>
 
   <!-- RIGHT LINKS -->
-  <div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#about">Doctor</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div class="nav-links mobile">
     <a href="#">Home</a>
     <a href="#about">Doctor</a>
     <a href="#services">Services</a>
@@ -282,10 +568,28 @@
 <section id="services" class="section">
   <h2>Our Services</h2>
   <hr class="divider">
-  <div class="card">Child Checkup</div>
-  <div class="card">Vaccination</div>
-  <div class="card">Fever Treatment</div>
-  <div class="card">Growth Monitoring</div>
+  <div class="services-container">
+    <div class="card">
+      <div class="service-icon">👶</div>
+      <h3>Child Checkup</h3>
+      <p>Comprehensive health examinations for your child's well-being</p>
+    </div>
+    <div class="card">
+      <div class="service-icon">💉</div>
+      <h3>Vaccination</h3>
+      <p>Complete immunization schedules to protect against diseases</p>
+    </div>
+    <div class="card">
+      <div class="service-icon">🌡️</div>
+      <h3>Fever Treatment</h3>
+      <p>Expert care and treatment for fever and related conditions</p>
+    </div>
+    <div class="card">
+      <div class="service-icon">📈</div>
+      <h3>Growth Monitoring</h3>
+      <p>Track your child's development and growth milestones</p>
+    </div>
+  </div>
 </section>
 
 <section class="section">
@@ -295,6 +599,25 @@
     <img src="images/clinic/clinic1.jpeg">
     <img src="images/clinic/clinic2.jpeg">
     <img src="images/clinic/clinic4.jpeg">
+  </div>
+</section>
+
+<section class="section">
+  <h2>What Parents Say</h2>
+  <hr class="divider">
+  <div class="testimonials">
+    <div class="testimonial">
+      <p>"Dr. Omar is amazing with kids! My son feels comfortable and the doctor explains everything clearly."</p>
+      <cite>- Mrs. Sharma</cite>
+    </div>
+    <div class="testimonial">
+      <p>"Professional service and caring staff. Highly recommend for pediatric care."</p>
+      <cite>- Mr. Khan</cite>
+    </div>
+    <div class="testimonial">
+      <p>"The clinic is clean and well-equipped. Dr. Omar takes time to listen to concerns."</p>
+      <cite>- Mrs. Patel</cite>
+    </div>
   </div>
 </section>
 
@@ -321,8 +644,27 @@
 </section>
 
 <footer>
-  <p>📍 Masab Tank, Hyderabad</p>
-  <p>📞 +91 86862 50493</p>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>City Clinic</h3>
+      <p>Providing compassionate pediatric care for your family</p>
+    </div>
+    <div class="footer-section">
+      <h4>Contact Info</h4>
+      <p>📍 Masab Tank, Hyderabad</p>
+      <p>📞 +91 86862 50493</p>
+      <p>🕒 Mon-Sat: 9AM-8PM</p>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <a href="#about">About Doctor</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Book Appointment</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 City Clinic. All rights reserved.</p>
+  </div>
 </footer>
 
 <a href="https://wa.me/918686250493?text=Hello%20Doctor%20I%20want%20to%20book%20an%20appointment" class="whatsapp">💬</a>
@@ -355,6 +697,15 @@ window.addEventListener("scroll", () => {
       sec.classList.add("show");
     }
   });
+});
+
+// Hamburger menu toggle
+const hamburger = document.querySelector('.hamburger');
+const mobileMenu = document.querySelector('.nav-links.mobile');
+
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.toggle('active');
+  hamburger.classList.toggle('active');
 });
 </script>
 
