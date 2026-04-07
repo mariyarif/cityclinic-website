@@ -391,7 +391,11 @@
       }
 
       .nav-links.mobile {
-        display: flex;
+        display: none !important;
+      }
+
+      .nav-links.mobile.active {
+        display: flex !important;
       }
 
       .hero {
@@ -703,10 +707,21 @@ window.addEventListener("scroll", () => {
 const hamburger = document.querySelector('.hamburger');
 const mobileMenu = document.querySelector('.nav-links.mobile');
 
-hamburger.addEventListener('click', () => {
-  mobileMenu.classList.toggle('active');
-  hamburger.classList.toggle('active');
-});
+if (hamburger && mobileMenu) {
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+    hamburger.classList.toggle('active');
+  });
+  
+  // Close menu when clicking on a link
+  const mobileLinks = mobileMenu.querySelectorAll('a');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      hamburger.classList.remove('active');
+    });
+  });
+}
 </script>
 
 </body>
